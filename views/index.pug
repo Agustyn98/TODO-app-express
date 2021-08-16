@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the #{title}
+  h4 Pending tasks:
+  each item in pending_tasks
+    
+    <form method="post" action="/todo/change-state">
+      <input type="submit" name="state" value="Done!"/>
+      <input type="hidden" name="value" value="#{item}" />
+      =item 
+    </form>
+    <br>
+  
+  h4 Finished tasks: 
+  each item in finished_tasks
+    <form method="post" action="/todo/change-state">
+      <input type="submit" name="state" value="Not done"/>
+      <input type="hidden" name="value" value="#{item}" />
+      =item 
+    </form>
+    <br>
+
+
+  <br><br>
+  <form method="post">
+    <label for="fname">Add new task:</label>
+    <input type="text" name="newtask">
+    <button type="submit">Add</button>
+  </form>
+  <br><br>
